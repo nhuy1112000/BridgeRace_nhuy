@@ -45,6 +45,8 @@ public class Bot : Character
             currentState.OnEnter(this);
         }
 
+        Debug.Log(currentState);
+
     }
 
     void FixedUpdate()
@@ -54,40 +56,40 @@ public class Bot : Character
             Debug.Log("Executing state: " + currentState.GetType().Name);
             currentState.OnExcute(this);
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position + transform.forward * 0.5f, Vector3.down, out hit, 3f, stairLayer))
-            {
-                if (SameColor(hit))
-                {
-                    ChangeAnim(Constants.ANIM_RUN);
-                    agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
-                }
-                else
-                {
-                    if (DifferentColor(hit))
-                    {
-                        if (HaveBrick(hit))
-                        {
-                            ChangeAnim(Constants.ANIM_RUN);
-                            agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
-                        }
-                        else if (DifferentColorDown())
-                        {
-                            ChangeAnim(Constants.ANIM_RUN);
-                            agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
-                        }
-                        else if (DifferentColorUp())
-                        {
-                            ChangeAnim(Constants.ANIM_IDLE);
-                            agent.speed = slowSpeed; // Bot di chuyển đứng yên
-                        }
-                    }
-                }
-            }
-            else
-            {
-                agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
-            }
+            //RaycastHit hit;
+            //if (Physics.Raycast(transform.position + transform.forward * 0.5f, Vector3.down, out hit, 3f, stairLayer))
+            //{
+            //    if (SameColor(hit))
+            //    {
+            //        ChangeAnim(Constants.ANIM_RUN);
+            //        agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
+            //    }
+            //    else
+            //    {
+            //        if (DifferentColor(hit))
+            //        {
+            //            if (HaveBrick(hit))
+            //            {
+            //                ChangeAnim(Constants.ANIM_RUN);
+            //                agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
+            //            }
+            //            else if (DifferentColorDown())
+            //            {
+            //                ChangeAnim(Constants.ANIM_RUN);
+            //                agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
+            //            }
+            //            else if (DifferentColorUp())
+            //            {
+            //                ChangeAnim(Constants.ANIM_IDLE);
+            //                agent.speed = slowSpeed; // Bot di chuyển đứng yên
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    agent.speed = normalSpeed; // Bot di chuyển với tốc độ bình thường
+            //}
         }
     }
 
@@ -97,6 +99,11 @@ public class Bot : Character
         this.destination = destination;
         agent.SetDestination(destination);
         // Debug.Log("destination" + destination);
+    }
+
+    internal void MoveStop()
+    {
+        agent.enabled = false;
     }
 }
    

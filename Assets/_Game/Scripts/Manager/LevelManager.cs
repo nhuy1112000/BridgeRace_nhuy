@@ -12,6 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     
     List<ColorType> colorDatas = new List<ColorType>();
     public List<Character> characters = new List<Character>();
+    public List<Bot> bots = new List<Bot>();
 
     public void Start()
     {
@@ -22,7 +23,7 @@ public class LevelManager : Singleton<LevelManager>
         colorDatas.Add(ColorType.Yellow);
         colorDatas.Add(ColorType.Pink);
         colorDatas.Add(ColorType.Orange);
-        //LoadLevel(0);
+        LoadLevel(0);
 
 
         //test tam sau 1s thi moi bat dau patrol
@@ -56,6 +57,7 @@ public class LevelManager : Singleton<LevelManager>
             xOffset += 2f;
             Bot bot = Instantiate(botPrefab, botposition , Quaternion.identity);
             characters.Add(bot);
+            bots.Add(bot);
             int randomIndex = Random.Range(1, colorDatas.Count);
             ColorType botColor = colorDatas[randomIndex];
             bot.ChangeColor(botColor);
@@ -75,7 +77,7 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
-    public void LoadLeve(int level)
+    public void LoadLevel(int level)
     {
         if(currentLevel != null)
         {
@@ -84,7 +86,25 @@ public class LevelManager : Singleton<LevelManager>
         if (level < levelPrefab.Length)
         {
             currentLevel = Instantiate(levelPrefab[level]);
-            //currentLevel.OnInit();
+            OnInit();
         }
+    }
+
+    public void OnFinishGame()
+    {
+        for ( int i = 0; i < characters.Count; i++)
+        {
+            bots[i].ChangeState(null);
+            bots[i].MoveStop();
+        }
+    }
+
+    public void OnReset()
+    {
+        for (int i = 0; i < characters.Count; i++)
+        {
+            Destroy(bots[i]);
+        }
+        bots.Clear();
     }
 }

@@ -10,7 +10,7 @@ public class PatrolState : IState<Bot>
     {     
         t.ChangeAnim(Constants.ANIM_RUN);
         targetBricks = Random.Range(2, 6);
-        Debug.Log("so gach can tim la" + targetBricks);
+        Debug.Log("bot" + t.colorType + "so gach can tim la" + targetBricks);
         SeekTarget(t);
         
     }
@@ -21,7 +21,7 @@ public class PatrolState : IState<Bot>
         {
             if (t.BrickCount >= targetBricks)
             {
-                Debug.Log("doi sang state acttack");
+                Debug.Log("bot" + t.colorType + "doi sang state acttack");
                 t.ChangeState(new ActtackState());
             }
             else
@@ -44,8 +44,8 @@ public class PatrolState : IState<Bot>
         if (brick != null)
         {
             t.SetDestination(brick.transform.position);
-        
-          
+            Debug.Log("bot" + t.colorType + "set destination" + brick);
+
         }
         else
         {
