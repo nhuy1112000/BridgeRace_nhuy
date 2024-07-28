@@ -1,0 +1,10 @@
+﻿.vs
+Library
+Logs
+obj
+Temp
+UserSettings
+.vsconfig
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+BridgeRace_nhuy.sln

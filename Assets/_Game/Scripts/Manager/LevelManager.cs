@@ -7,7 +7,7 @@ public class LevelManager : Singleton<LevelManager>
     public Level currentLevel;
     public Bot botPrefab;
     public Player playerPrefab;
-   
+    public Level[] levelPrefab;
     public int CharacterAmount => currentLevel.botAmount * 1;
     
     List<ColorType> colorDatas = new List<ColorType>();
@@ -22,7 +22,7 @@ public class LevelManager : Singleton<LevelManager>
         colorDatas.Add(ColorType.Yellow);
         colorDatas.Add(ColorType.Pink);
         colorDatas.Add(ColorType.Orange);
-        OnInit();
+        //LoadLevel(0);
 
 
         //test tam sau 1s thi moi bat dau patrol
@@ -72,6 +72,19 @@ public class LevelManager : Singleton<LevelManager>
             {
                 (item as Bot).ChangeState(new PatrolState());
             }
+        }
+    }
+
+    public void LoadLeve(int level)
+    {
+        if(currentLevel != null)
+        {
+            Destroy(currentLevel.gameObject);
+        }
+        if (level < levelPrefab.Length)
+        {
+            currentLevel = Instantiate(levelPrefab[level]);
+            //currentLevel.OnInit();
         }
     }
 }
