@@ -40,19 +40,19 @@ public class Character : ColorObject
                 other.gameObject.SetActive(false);
                 delayedBrick = brick;
                 AddBrick(colorType);
-                Invoke(nameof(DelayActiveBrick), 2f);
+                Invoke(nameof(DelayActiveBrick), 3f);
 
             }
 
         }
     }
-     
+
     public void DelayActiveBrick()
     {
-        if (stage != null && delayedBrick != null)
-        {
+      
+        
             stage.ActiveBrick(delayedBrick);
-        }
+        
     }
 
     public void AddBrick(ColorType colorType)
@@ -112,7 +112,7 @@ public class Character : ColorObject
        
         if ( playerbricks.Count == 0 && skin.forward.z > 0)
         {
-            Debug.Log("bot" + colorType + " di duoc");
+        
             return true;
         }
         return false;
@@ -122,7 +122,7 @@ public class Character : ColorObject
         
         if (playerbricks.Count == 0 && skin.forward.z < 0)
         {
-            //Debug.Log("bot" + colorType + "k di duoc");
+            
             return true;
         }
 

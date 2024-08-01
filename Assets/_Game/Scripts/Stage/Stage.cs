@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Stage : MonoBehaviour
+public class Stage : Singleton<Stage>
 {
     [SerializeField] private Transform[] brickPoint;
    public  List<Vector3> brickShuffleList = new List<Vector3>();
@@ -12,6 +12,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private Brick brickPrefab;
     List<Brick> bricks = new List<Brick>();
     public Bot bot;
+    public Transform[] stageDestinations;
 
 
     public void Start()
@@ -118,9 +119,20 @@ public class Stage : MonoBehaviour
         return brick;
     }
 
-    public void  ActiveBrick(Brick brick)
+    public void ActiveBrick(Brick brick)
     {
-        brick.gameObject.SetActive(true);
+        if (!brick.gameObject.activeInHierarchy)
+        {
+            brick.gameObject.SetActive(true);
+        }
+
+    }
+
+    public Transform GetRandomDestination()
+    {
+        // Lấy điểm đến ngẫu nhiên từ stageDestinations
+        int randomIndex = Random.Range(0, stageDestinations.Length);
+        return stageDestinations[randomIndex];
     }
 }
 

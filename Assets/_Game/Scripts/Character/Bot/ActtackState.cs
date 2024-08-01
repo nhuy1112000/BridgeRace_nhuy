@@ -1,13 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ActtackState : IState<Bot>
 {
+    private Transform randomDestination;
     public void OnEnter(Bot t)
     {
-        t.SetDestination(LevelManager.Instance.FinishPoint());
-        Debug.Log(" di den dich");
+
+        randomDestination = Stage.Instance.GetRandomDestination();
+        if (t.stage != null)
+        {
+            t.SetDestination(randomDestination.position);
+        }
+        if (t.transform.position == randomDestination.position)
+        {
+            t.SetDestination(LevelManager.Instance.FinishPoint());
+        }
+       
+            
+
     }
 
     public void OnExcute(Bot t)

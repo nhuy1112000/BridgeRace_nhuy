@@ -90,7 +90,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  brickShuffleList: []
+  emptyList: []
   brickPrefab: {fileID: 3219988399572762164, guid: d6a6f599ccf597e44a2addde60d62e4f, type: 3}
+  bot: {fileID: 0}
+  stageDestinations: []
 --- !u!1 &442270079633770083
 GameObject:
   m_ObjectHideFlags: 0
