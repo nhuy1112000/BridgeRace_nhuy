@@ -38,22 +38,23 @@ public class Character : ColorObject
             if (brick.colorType == colorType)
             {
                 other.gameObject.SetActive(false);
-                delayedBrick = brick;
+                StartCoroutine(DeactivateAndReactivate(brick.gameObject));
+
                 AddBrick(colorType);
-                Invoke(nameof(DelayActiveBrick), 3f);
+               
 
             }
 
         }
     }
-
-    public void DelayActiveBrick()
+    private IEnumerator DeactivateAndReactivate(GameObject brickObject)
     {
-      
-        
-            stage.ActiveBrick(delayedBrick);
-        
+        brickObject.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        brickObject.SetActive(true);
     }
+
+ 
 
     public void AddBrick(ColorType colorType)
     {

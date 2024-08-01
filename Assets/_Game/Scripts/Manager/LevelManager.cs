@@ -28,7 +28,7 @@ public class LevelManager : Singleton<LevelManager>
 
         //test tam sau 1s thi moi bat dau patrol
         //ve sau nguoi choi an nut play tren ui thi goi vao ham onplay
-        Invoke(nameof(OnPlay), 1f);
+       
     }
     public Vector3 FinishPoint()
     {
@@ -68,6 +68,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnPlay()
     {
+        GameManager.Instance.ChangeState(GameState.Gameplay);
         foreach (var item in characters)
         {
             if (item is Bot)
@@ -83,6 +84,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             Destroy(currentLevel.gameObject);
         }
+       
         if (level < levelPrefab.Length)
         {
             currentLevel = Instantiate(levelPrefab[level]);

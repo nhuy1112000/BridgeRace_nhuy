@@ -91,6 +91,11 @@ public class Bot : Character
                 ChangeAnim(Constants.ANIM_RUN);
             }
         }
+        else
+        {
+            ChangeAnim(Constants.ANIM_IDLE);
+            agent.enabled = false;
+        }
     }
 
     public void SetDestination(Vector3 destination)

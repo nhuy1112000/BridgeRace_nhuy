@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Start()
     {
-        ChangeState(GameState.Gameplay);
+        ChangeState(GameState.Mainmenu);
     }
 
     public void ChangeState(GameState gamestate)

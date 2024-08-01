@@ -119,14 +119,7 @@ public class Stage : Singleton<Stage>
         return brick;
     }
 
-    public void ActiveBrick(Brick brick)
-    {
-        if (!brick.gameObject.activeInHierarchy)
-        {
-            brick.gameObject.SetActive(true);
-        }
 
-    }
 
     public Transform GetRandomDestination()
     {
